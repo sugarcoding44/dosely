@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Email Verified - BunnyDose</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐰</text></svg>">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: bounce 0.8s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #718096;
+            margin-bottom: 30px;
+        }
+
+        .message-card {
+            background: linear-gradient(135deg, #fef3f8 0%, #fef7fb 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #ff69b4;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .heart-icon {
+            font-size: 28px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(1); }
+        }
+
+        .from-tag {
+            font-size: 14px;
+            color: #ff69b4;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .message-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #2d3748;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .message-signature {
+            text-align: right;
+            font-size: 16px;
+            color: #4a5568;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .bunny-decoration {
+            font-size: 24px;
+            margin: 0 5px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .redirect-info {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .sparkles {
+            font-size: 20px;
+            animation: sparkle 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.5; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="success-icon">✅</div>
+            <h1>Email Verified!</h1>
+            <p class="subtitle">Your account is ready to go <span class="bunny-decoration">🐰</span></p>
+
+            <div class="message-card">
+                <div class="message-header">
+                    <span class="heart-icon">💕</span>
+                    <span class="from-tag">From Kitty</span>
+                </div>
+                <p class="message-text">
+                    "I wish you the best for your weight loss journey, my love."
+                </p>
+                <div class="message-signature">
+                    Love, Kitty <span class="sparkles">✨</span>
+                </div>
+            </div>
+
+            <button class="btn" onclick="redirectToApp()">Continue to BunnyDose</button>
+
+            <p class="redirect-info">
+                Redirecting automatically in <span id="countdown">5</span> seconds...
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let countdown = 5;
+        const countdownEl = document.getElementById('countdown');
+
+        const timer = setInterval(() => {
+            countdown--;
+            countdownEl.textContent = countdown;
+
+            if (countdown <= 0) {
+                clearInterval(timer);
+                redirectToApp();
+            }
+        }, 1000);
+
+        function redirectToApp() {
+            // Get the current URL to extract any tokens
+            const hashParams = new URLSearchParams(window.location.hash.substring(1));
+
+            // Redirect to the main app
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
