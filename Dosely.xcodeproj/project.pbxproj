@@ -1,0 +1,13 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		/* This is a simplified Xcode project file */
+		/* You will need to create this properly in Xcode */
+		/* Follow the setup instructions in SETUP.md */
+	};
+	rootObject = "Dosely Project";
+}
